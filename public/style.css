@@ -14,3 +14,43 @@
     margin-top: 5px !important;
     padding: 5px;
 }
+
+body {
+    font-family: sans-serif;
+  }
+  
+  .container {
+    margin: 0 auto;
+    width: 500px;
+    padding: 20px;
+    border: 1px solid #ccc;
+  }
+  
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+  }
+  
+  button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  #taxResultLabel {
+    font-weight: bold;
+    margin-top: 20px;
+  }

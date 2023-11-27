@@ -1,28 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pay Tax</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-</head>
-<body>
-    <h2 class="text-center"> PAY INCOME TAX</h2>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <h2 class="text-center">PAY INCOME TAX</h2>
     <div class="container">
-        <div class="jumbotron">
-            <div class="row">
-                
-                    <!-- Feel free to delete the paragraph after implementation -->
-                    <p>Create an appropriate form to facilitate the payment of Income tax. <small>Remember: </small> All we need is a field where to enter the total profits made, then 18% of the profits is returned as the tax payable. A field requesting for the TIN is returned, TIN entered, and then the pay button is clicked to complete the process.</p>
-                    <p>Upon successful payment, a thank you alert containing the payer's name should be displayed.</p>
-            </div>
+      <div class="jumbotron">
+        <div class="row">
+          <!-- Feel free to delete the paragraph after implementation -->
+          <p>
+            Create an appropriate form to facilitate the payment of Income tax.
+            <small>Remember: </small> All we need is a field where to enter the
+            total profits made, then 18% of the profits is returned as the tax
+            payable. A field requesting for the TIN is returned, TIN entered,
+            and then the pay button is clicked to complete the process.
+          </p>
+          <p>
+            Upon successful payment, a thank you alert containing the payer's
+            name should be displayed.
+          </p>
         </div>
+      </div>
     </div>
 
     <div class="row text-center">
-        <a class="btn btn-primary" href="index.html">BACK HOME</a>
+      <a class="btn btn-primary" href="index.html">BACK HOME</a>
     </div>
-</body>
+  </body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pay Tax</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <h2 class="text-center">PAY INCOME TAX</h2>
+    <div class="container">
+      <div class="jumbotron">
+        <div class="row">
+          <!-- Feel free to delete the paragraph after implementation -->
+          
+
+          <form id="profitForm">
+            <label for="profits">Enter profits:</label>
+            <input type="number" id="profits" name="profits" min="0" required />
+            <button type="button" id="calculateButton">Calculate Tax</button>
+            <label id="taxResultLabel"></label>
+          </form>
+        </div>
+        <label for="tin">Enter TIN:</label>
+        <input type="text" id="tin" name="tin" required />
+
+        <button type="button" id="payButton">Pay Now</button>
+      </div>
+    </div>
+
+    <div class="row text-center">
+      <a class="btn btn-primary" href="index.html">BACK HOME</a>
+    </div>
+    <script>
+      const profitsInput = document.getElementById("profits");
+      const calculateButton = document.getElementById("calculateButton");
+      const taxResultLabel = document.getElementById("taxResultLabel");
+      const tinInput = document.getElementById("tin");
+      const payButton = document.getElementById("payButton");
+
+      let taxCalculated = false;
+
+      calculateButton.addEventListener("click", () => {
+        const profits = parseFloat(profitsInput.value);
+        if (!isNaN(profits)) {
+          const taxAmount = (profits * 18) / 100;
+          taxResultLabel.textContent = `Tax amount: ${taxAmount.toFixed(2)}`;
+
+          taxCalculated = true;
+
+          // Show TIN input and Pay button
+          tinInput.style.display = "block";
+          payButton.style.display = "block";
+        } else {
+          taxResultLabel.textContent = "Please enter a valid profit amount.";
+        }
+      });
+
+      setTimeout(() => {
+        alert("Tax payment successful!");
+      }, 1000); // 1 second delay
+
+      payButton.addEventListener("click", () => {
+        // Make an API call to the Node.js server to process the payment
+        // and store the TIN number and tax amount in MongoDB
+        // Upon successful payment, display the alert
+        alert("Tax payment initiated. Please wait for confirmation.");
+      });
+
+      tinInput.style.display = "none";
+      payButton.style.display = "none";
+    </script>
+  </body>
 </html>
