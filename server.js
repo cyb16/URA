@@ -20,7 +20,7 @@ mongoose.connect(dbURI)
 
 // Function to insert the form data into the MongoDB collection
 async function insertFormData(formFields) {
-  try {
+    try {
     const payer = new Payer(formFields);
     await payer.save();
     console.log("Form data inserted successfully");
@@ -54,6 +54,10 @@ function generateTIN(gender) {
   const tin = `${currentYear}/${gender.charAt(0).toUpperCase()}/${generateRandomNumber()}`;
   return tin;
 }
+
+  // Send a response to the client
+  res.send("Form submitted successfully");
+
 
 // Start the server
 const port = 3000;

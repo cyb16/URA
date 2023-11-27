@@ -87,7 +87,6 @@
 
             <label for="tin">TIN:</label>
             <span id="tinLabel"></span>
-            
           </form>
 
           <div class="col-md-4">
@@ -128,5 +127,37 @@
     <div class="row text-center">
       <a class="btn btn-primary" href="index.html">BACK HOME</a>
     </div>
+    <script>
+      function handleFormSubmission(event) {
+        event.preventDefault();
+
+        const payerName = document.getElementById("payerName").value;
+        const dateOfBirth = document.getElementById("dateOfBirth").value;
+        const occupation = document.getElementById("occupation").value;
+        const gender = document.querySelector(
+          'input[name="gender"]:checked'
+        ).value;
+        const phoneNumber = document.getElementById("phoneNumber").value;
+        const email = document.getElementById("email").value;
+        const annualIncome = document.getElementById("annualIncome").value;
+
+        const currentYear = new Date().getFullYear();
+        const tin = `${currentYear}/${gender
+          .charAt(0)
+          .toUpperCase()}/${generateRandomNumber()}`;
+
+        const tinLabel = document.getElementById("tinLabel");
+        tinLabel.textContent = tin;
+      }
+
+      function generateRandomNumber() {
+        const numbers = new Set();
+        while (numbers.size < 6) {
+          const randomNum = Math.floor(Math.random() * 10);
+          numbers.add(randomNum);
+        }
+        return Array.from(numbers).join("");
+      }
+    </script>
   </body>
 </html>
